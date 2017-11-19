@@ -51,3 +51,7 @@ demonstrating the usage of Flask, Beautifulsoup crawler, AngularJS and Docker.
 #### 2. Run the image with your local port mapping	
 
 	$ docker run -d -p 5000:5000 --name scan-crawler-service scan-crawler
+
+### Tests
+
+	$ nosetests -v
