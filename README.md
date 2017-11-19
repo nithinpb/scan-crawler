@@ -1,6 +1,16 @@
 # Scan Crawler
 
-A project demonstrating the usage of Flask, Beautifulsoup crawler, AngularJS and Docker. 
+A project to crawl/scrape seed urls based on depth requested. This is a basic project in python for web-crawling using the tools described below. 
+
+### Tools 
+
+	1. Python 2.7
+	2. Flask (Micro web framework)
+	3. Beautifulsoup (For basic implementation. Can be upgraded to scrapy for production needs)
+	4. AngularJS 1.x, Bootstrap 3.x (Frontend)
+	5. Docker (Containerization, Sandbox)
+
+demonstrating the usage of Flask, Beautifulsoup crawler, AngularJS and Docker. 
 
 ### Local Development
 
@@ -11,12 +21,12 @@ A project demonstrating the usage of Flask, Beautifulsoup crawler, AngularJS and
 
 #### 1. Clone the project:
 
-	$ git clone <git-repo>
-	$ cd <folder>
+	$ git clone https://github.com/nithinpb/scan-crawler.git
+	$ cd scan-crawler
 
 #### 2. Install packages:
 
-	$ mkvirtualenv <anyname> # or workon <anyname> if you have already installed
+	$ mkvirtualenv scan-crawler # or workon scan-crawler if you have already installed
 	$ pip install -r requirements.txt
 
 #### 3. Run the application:
