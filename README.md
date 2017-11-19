@@ -1,3 +1,5 @@
+[![Build status](https://travis-ci.org/nithinpb/scan-crawler.svg?branch=master)](https://travis-ci.org/nithinpb)
+
 # Scan Crawler
 
 A project to crawl/scrape seed urls based on depth requested. This is a basic project in python for web-crawling using the tools described below. 
