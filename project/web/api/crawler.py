@@ -20,19 +20,6 @@ def sample():
 
 @route(bp, '/crawl/')
 def execute():
-
-    def _validate_seed( seed ): 
-        if seed.index('http://') == 0 or seed.index('https://') == 0:
-            return seed
-
-        return "http://" + seed
-
-    def _validate_depth( depth ): 
-        if not depth.isdigit():
-            return 1
-
-        return int(depth)
-        
     seed = _validate_seed( request.args.get('seed') )
     depth = _validate_depth( request.args.get('depth') )
     return BasicCrawler(seed, depth).start_crawl()

@@ -1,46 +1,67 @@
 import logging
 import requests
 from bs4 import BeautifulSoup
+from ..core import ApplicationError
 
 class BasicCrawler(object):
+    """A web crawler based on a seed url and the depth"""
 
     crawl_map = {}
     links_list = list()
     seed, depth = None, 0
 
-    def __init__(self, seed, depth): 
+    def __init__( self, seed, depth ): 
         self.crawl_map = {
             "seed": seed,
             "depth": depth,
             "contents": []
         }
-        self.seed = seed
-        self.depth = depth
+        self.seed = self._validate_seed( seed )
+        self.depth = self._validate_depth( depth )
 
-    def start_crawl(self, seed=None, depth=None): 
+    def _validate_seed( self, seed ): 
+        if not seed or not isinstance(seed, str): 
+            raise ApplicationError("seed must be a string.")
+
+        if seed.index('http://') == 0 or seed.index('https://') == 0:
+            return seed
+
+        return "http://" + seed
+
+    def _validate_depth( self, depth ): 
+
+        if depth is None: 
+            raise ApplicationError("depth must be a number.")
+
+        if isinstance(depth, str) and not depth.isdigit():
+            return int(depth)
+
+        return depth
+        
+    def start_crawl( self, seed=None, depth=None ): 
         seed = seed or self.seed
         depth = depth or self.depth
 
         self.crawl(seed, depth)
         return self.crawl_map
 
-    def format_url(self, root, url):
+    def format_url( self, seed, url ):
 
-        def base(u):
+        def base( u ):
             u = u.split('?')[0].rstrip('/')
             return u
 
-        root = base(root)
+        seed = base(seed)
 
         if url == "/":
-            return None
-        elif url.startswith("http://"):
+            return seed
+        elif url.startswith("http://") or url.startswith("https://"):
             return base(url)
         elif url.startswith("/"):
-            return root + url
+            return seed + url
 
 
-    def crawl(self, seed, depth):
+    def crawl( self, seed, depth ):
         print "Crawling {seed} at {depth}".format(seed=seed, depth=depth)
 
         response = requests.get(seed)
