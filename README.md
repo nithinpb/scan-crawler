@@ -2,6 +2,10 @@
 
 A project to crawl/scrape seed urls based on depth requested. This is a basic project in python for web-crawling using the tools described below. 
 
+### Screenshot
+
+![Scan Crawler](project/web/frontend/static/img/screenshot.png?raw=true "Scan Crawler Screenshot")
+
 ### Tools 
 
 	1. Python 2.7
